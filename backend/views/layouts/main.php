@@ -57,12 +57,53 @@ AppAsset::register($this);
     NavBar::end();
     ?>
 
-    <div class="container">
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
-        <?= Alert::widget() ?>
-        <?= $content ?>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3 col-md-2 sidebar">
+                <?php
+                echo Nav::widget([
+                    'options' => ['class' => 'nav-sidebar'],
+                    'items' => [
+                        [
+                            'label' => '用户管理',
+                            'url' => ['/user/index']
+                        ],
+                        [
+                            'label' => '文章',
+                            'url' =>  ['/article/index']
+                        ],
+                        [
+                            'label' => '段子',
+                            'url' =>  ['/duanzi/index']
+                        ],
+                        [
+                            'label' => 'gif图',
+                            'url' => ['/gif/index']
+                        ],
+                        [
+                            'label' => '视频',
+                            'url' =>  ['/video/index']
+                        ],
+                        [
+                            'label' => '写真',
+                            'url' =>  ['/xiezhen/index']
+                        ],
+                        [
+                            'label' => '图片管理',
+                            'url' => ['/image-list/index']
+                        ]
+                    ]
+                ]);
+                ?>
+            </div>
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                <?= Breadcrumbs::widget([
+                    'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                ]) ?>
+                <?= Alert::widget() ?>
+                <?= $content ?>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -70,7 +111,7 @@ AppAsset::register($this);
     <div class="container">
         <p class="pull-left">&copy; <?= Html::encode(Yii::$app->name) ?> <?= date('Y') ?></p>
 
-        <p class="pull-right"><?= Yii::powered() ?></p>
+        <p class="pull-right"><?= 111111111 ?></p>
     </div>
 </footer>
 

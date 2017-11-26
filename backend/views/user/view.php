@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Delete', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => '确认要删除嘛?',
                 'method' => 'post',
             ],
         ]) ?>
@@ -30,13 +30,32 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'username',
-            'auth_key',
             'password_hash',
-            'password_reset_token',
             'email:email',
-            'status',
-            'created_at',
-            'updated_at',
+            [
+                'attribute' => 'status',
+                'value' => function($model){
+                    $status = $model::getStatusOptions();
+                    return $status[$model['status']];
+                },
+                'label' => '状态',
+            ],
+            [
+                'attribute'=> 'created_at',
+                'format' => [
+                    'Datetime',
+                    'php:Y-m-d H:i:s'
+                ],
+                'label' => '创建时间',
+            ],
+            [
+                'attribute' => 'updated_at',
+                'format' => [
+                    'Datetime',
+                    'php:Y-m-d H:i:s'
+                ],
+                'label' => '更新时间',
+            ],
         ],
     ]) ?>
 

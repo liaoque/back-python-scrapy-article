@@ -65,7 +65,8 @@ class DuanziSearch extends Duanzi
         ]);
 
         $query->andFilterWhere(['like', 'body', $this->body])
-            ->andFilterWhere(['like', 'fingerprint', $this->fingerprint]);
+            ->andFilterWhere(['like', 'fingerprint', $this->fingerprint])
+            ->orderBy('id desc');
 
         return $dataProvider;
     }

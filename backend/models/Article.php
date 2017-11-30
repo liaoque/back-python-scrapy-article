@@ -49,6 +49,13 @@ class Article extends \yii\db\ActiveRecord
         ];
     }
 
+    public static function statusList(){
+        return [
+            1 => '发布',
+            2 => '未发布'
+        ];
+    }
+
     /**
      * @inheritdoc
      * @return ArticleQuery the active query used by this AR class.
@@ -56,5 +63,10 @@ class Article extends \yii\db\ActiveRecord
     public static function find()
     {
         return new ArticleQuery(get_called_class());
+    }
+
+    public function getArticleBody()
+    {
+        return $this->hasOne(ArticleBody::className(), ['aid' => 'id']);
     }
 }

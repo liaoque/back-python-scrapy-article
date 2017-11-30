@@ -32,7 +32,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'body:ntext',
             'fingerprint',
             'ctime',
-            'status',
+            [
+                'attribute' => 'status',
+                'format' => function ($value) {
+                    return \backend\models\Article::statusList()[$value];
+                },
+                'label' => '状态'
+            ],
         ],
     ]) ?>
 

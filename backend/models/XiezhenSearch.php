@@ -64,7 +64,8 @@ class XiezhenSearch extends Xiezhen
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'thumbnail', $this->thumbnail]);
+            ->andFilterWhere(['like', 'thumbnail', $this->thumbnail])
+            ->orderBy('id desc');
 
         return $dataProvider;
     }

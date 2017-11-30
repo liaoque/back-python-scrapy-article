@@ -54,4 +54,11 @@ class Xiezhen extends \yii\db\ActiveRecord
     {
         return new XiezhenQuery(get_called_class());
     }
+
+    public function getImageList(){
+        return $this->hasMany(ImageList::className(), [
+            'pid' => 'id'
+        ]);
+    }
+
 }

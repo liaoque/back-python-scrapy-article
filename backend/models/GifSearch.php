@@ -66,7 +66,8 @@ class GifSearch extends Gif
 
         $query->andFilterWhere(['like', 'title', $this->title])
             ->andFilterWhere(['like', 'src', $this->src])
-            ->andFilterWhere(['like', 'fingerprint', $this->fingerprint]);
+            ->andFilterWhere(['like', 'fingerprint', $this->fingerprint])
+            ->orderBy('id desc');
 
         return $dataProvider;
     }

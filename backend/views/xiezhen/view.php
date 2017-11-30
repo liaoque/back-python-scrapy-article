@@ -30,8 +30,42 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'title',
-            'thumbnail',
-            'status',
+            [
+                'attribute' => 'thumbnail',
+                'format' => function ($value) {
+                    return Html::img($value, [
+                        'width' => '200',
+                    ]);
+                }
+            ],
+            [
+                'attribute' => 'dsasd',
+                'format' => function ($v) {
+                    return $v;
+                },
+                'value' => function ($model) {
+                    $result = $model->imageList;
+                    $items = [];
+                    foreach ($result as $v) {
+                        $items[] = Html::img($v->getAttribute('src'));
+                    }
+                    return \yii\bootstrap\Carousel::widget([
+                        'items' => $items,
+                        'options' => [
+                            'id' => 'xasmkxoas',
+                            'style' => 'width:400px;'
+                        ]
+                    ]);
+                },
+                'label' => '图片集'
+            ],
+            [
+                'attribute' => 'status',
+                'format' => function ($value) {
+                    return \backend\models\Article::statusList()[$value];
+                },
+                'label' => '状态'
+            ],
         ],
     ]) ?>
 

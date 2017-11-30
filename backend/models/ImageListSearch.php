@@ -64,7 +64,8 @@ class ImageListSearch extends ImageList
             'type' => $this->type,
         ]);
 
-        $query->andFilterWhere(['like', 'src', $this->src]);
+        $query->andFilterWhere(['like', 'src', $this->src])
+            ->orderBy('id desc');
 
         return $dataProvider;
     }

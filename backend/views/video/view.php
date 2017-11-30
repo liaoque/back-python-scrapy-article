@@ -30,10 +30,38 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'title',
-            'src',
-            'thumbnail',
+            [
+                'attribute' => 'thumbnail',
+                'format' => function ($value) {
+                    return \yii\helpers\BaseHtml::img($value);
+                },
+                'label' => '缩略图'
+            ],
+            [
+                'attribute' => 'src',
+                'format' => function ($value) {
+//                    \yii\helpers\BaseHtml::beginTag('video');
+//                    \yii\helpers\BaseHtml::endTag('video');
+
+                    return \yii\helpers\BaseHtml::tag('video', '', [
+                        'src' => $value,
+                        'controls'=>"controls",
+                        'width' => '500'
+                    ]);
+//                   $message = yii::$app->get('messgae');
+//                    var_dump($message);
+//                    return \yii\helpers\BaseHtml::img($value);
+                },
+                'label' => '视频'
+            ],
             'ctime',
-            'status',
+            [
+                'attribute' => 'status',
+                'format' => function ($value) {
+                    return \backend\models\Article::statusList()[$value];
+                },
+                'label' => '状态'
+            ],
             'fingerprint',
         ],
     ]) ?>

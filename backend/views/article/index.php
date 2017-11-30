@@ -22,14 +22,16 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
             'id',
             'title',
-            'thumbnail',
             'ctime',
-            'status',
-
+            [
+                'attribute' => 'status',
+                'format' => function ($value) {
+                    return \backend\models\Article::statusList()[$value];
+                },
+                'label' => '状态'
+            ],
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

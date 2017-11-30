@@ -30,9 +30,29 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'title',
-            'thumbnail',
+            [
+                'attribute' => 'thumbnail',
+                'format' => function ($value) {
+                    return Html::img($value, [
+                        'width' => '20',
+                    ]);
+                }
+            ],
+            [
+                'attribute' => 'body',
+                'format' => 'Html',
+                'value' => function ($model, $obj) {
+                    return  $model->articleBody->getAttribute('body');
+                }
+            ],
             'ctime',
-            'status',
+            [
+                'attribute' => 'status',
+                'format' => function ($value) {
+                    return \backend\models\Article::statusList()[$value];
+                },
+                'label' => '状态'
+            ],
         ],
     ]) ?>
 
